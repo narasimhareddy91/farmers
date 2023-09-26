@@ -1,0 +1,88 @@
+curl -v -H "Content-Type: application/json" -d "{\"name\": \"Narasimhareddy\", \"landin_acres\": 10, \"mobile\": 9595987875, \"address\": \"YSR, AP\", \"defaultcrops\": \"Mirchi, Onion, Mosambi, Papaya\"}" localhost:8484/products
+
+curl -v -H "Content-Type: application/json" -d "{\"email\":\"perfadmin@agri.com\", \"password\":\"perfadmin\"}" localhost:8484/agri/auth/login
+
+curl -v -H "Content-Type: application/json" -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxLHBlcmZhZG1pbkBhZ3JpLmNvbSIsImlzcyI6Ik5TWVJFRERZIiwicm9sZXMiOiJbUk9MRV9BRE1JTl0iLCJpYXQiOjE2OTQ0MzA4NDcsImV4cCI6MTY5NDUxNzI0N30.BhB8hQoJRiqvMngAn5HEpz5hNx6WwC91FMM8FQCIADaoFP4nSAzIZ_S7Llfnk-avncs_crNxfZmPV3hTJ_X5Cw" -d "{"name": "Narasimhareddy", "landin_acres": 10.2, "mobile": 9595987875, "address": "YSR", "defaultcrops": "Mirchi"}" localhost:8484/agri/farmers/
+
+curl -L 'localhost:8484/agri/pestandfert' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzLHBlcmZhZ3JpYWdlbnRAYWdyaS5jb20iLCJpc3MiOiJOU1lSRUREWSIsInJvbGVzIjoiW1JPTEVfQUdSSUFHRU5UXSIsImlhdCI6MTY5NDQ1MjkyNSwiZXhwIjoxNjk0NTM5MzI1fQ.WZ_YmvU-YZ6Ovkl6YP81QvMZvtQYWYxnEe0PBddoeSD-ks_hG1fC8Fa9IG_oP80xA_XPmP5KUUMFBdxoXvbaGA' \
+-d '{"name": "MICKEY3", "cost": "1050/LTR", "packagingsize":"50 ML, 100ML, 250ML, 500ML, 1L", "companyName": "Redox Industries Limited", "targetPests": "Leaf curl virus & Yellow veins mosaic", "croptoApply":"Tomota, Brinjal, Beans, LadysFinger, Drumsticks","dose":"380 ML PER ACRE","productDescription": "MICKEY is organic plant extract based formulation, specially designed to protect plant and increase immunity power of the plant"}
+'
+
+curl -L 'localhost:8484/agri/farmers' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzLHBlcmZhZ3JpYWdlbnRAYWdyaS5jb20iLCJpc3MiOiJOU1lSRUREWSIsInJvbGVzIjoiW1JPTEVfQUdSSUFHRU5UXSIsImlhdCI6MTY5NDQ0MzY2NSwiZXhwIjoxNjk0NTMwMDY1fQ.MgzUctvUHYByh2WRDTaPL5rAtb2GIYRF75HqhMQ_dPvsHg1Zsyosidla1HhiOdUqUsLqSXwO8La9iFd7R4H5KQ' \
+-d '{"name": "Rahul", "landinAcres": 25, "age":55, "mobile": "9898989898", "address": "YSR", "defaultcrops": "Mango farms"}'
+
+
+Appliation.propertis not able to read by springboot servies so we have added propertsource annottion to seurity onfig class.
+
+Old JWT dependenies was removed and updatedt with below ones as we have observered iss servlet dispatcher
+antmather method removed in spring 5.7. above onwars so we have to use requestmather methods
+
+If you see any erros if there are no erros in your projet just go projet in eclipse and click clean option that will solve your problem.
+
+Javax has been removed and we have to name most of spring pakages as jakarta
+
+
+I have noticed hibernate not able to update or create new tbles when it was out of root package, so I have moved all classes to under root pakage that solved my problem.
+
+	<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+    <groupId>jakarta.xml.bind</groupId>
+    <artifactId>jakarta.xml.bind-api</artifactId>
+    <version>4.0.0</version>
+</dependency>
+
+
+<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+				
+				ERROR 29416
+				
+				
+				 select
+        u1_0.id,
+        u1_0.email,
+        u1_0.password 
+    from
+        users u1_0 
+    where
+        u1_0.email='perfadmin@agri.com'
+Hibernate: 
+    select
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.name 
+    from
+        users_roles r1_0 
+    join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    where
+        r1_0.user_id=1
+		
+		
+		 select
+        roles0_.user_id as user_id1_3_0_,
+        roles0_.role_id as role_id2_3_0_,
+        role1_.id as id1_1_1_,
+        role1_.name as name2_1_1_
+    from
+        farmersdb.users_roles roles0_
+    inner join
+        farmersdb.roles role1_
+            on roles0_.role_id=role1_.id
+    where
+        roles0_.user_id=1
