@@ -4,10 +4,12 @@ This Application developed for farmers support to apply pestcides on thier crops
 I have used following tech stack to devlop this application
 
 Java 17 or above
+
 Spring boot 3.1.3
+
 MySQL 8.0.34.0
 
-This is rest based application developed using java spring boot framework. I Have implemented JWT role based authorization mechanism.
+This is rest based application developed using java spring boot framework. I have implemented JWT role based authorization mechanism.
 
 Sample Curls are provided below
 
